@@ -1,21 +1,22 @@
 export CUDA_VISIBLE_DEVICES=0,1,2,3
 
 # Subject-Dependent
-# ADFD Dataset
+# ADFTD Dataset
 python \
   -u run.py \
   --task_name classification \
   --is_training 1 \
-  --root_path ./dataset/ADFD/ \
-  --model_id ADFD-Dep \
+  --root_path ./dataset/ADFTD/ \
+  --model_id ADFTD-Dep \
   --model Medformer \
-  --data ADFD-Dependent \
+  --data ADFTD-Dependent \
   --e_layers 6 \
   --batch_size 128 \
   --d_model 128 \
   --d_ff 256 \
-  --patch_len_list 1,2,4 \
-  --augmentations none,jitter,scale,drop \
+  --patch_len_list 2,4,8 \
+  --augmentations flip,shuffle,jitter,mask,drop \
+  --swa \
   --des 'Exp' \
   --itr 5 \
   --learning_rate 0.0001 \
@@ -68,15 +69,15 @@ python \
   --train_epochs 100 \
   --patience 10
 
-# ADFD Dataset
+# ADFTD Dataset
 python \
   -u run.py \
   --task_name classification \
   --is_training 1 \
-  --root_path ./dataset/ADFD/ \
-  --model_id ADFD-Indep \
+  --root_path ./dataset/ADFTD/ \
+  --model_id ADFTD-Indep \
   --model Medformer \
-  --data ADFD \
+  --data ADFTD \
   --e_layers 6 \
   --batch_size 128 \
   --d_model 128 \
@@ -264,15 +265,15 @@ python \
   --train_epochs 100 \
   --patience 10
 
-# ADFD Dataset
+# ADFTD Dataset
 python \
   -u run.py \
   --task_name classification \
   --is_training 1 \
-  --root_path ./dataset/ADFD/ \
-  --model_id ADFD-Indep \
+  --root_path ./dataset/ADFTD/ \
+  --model_id ADFTD-Indep \
   --model Medformer \
-  --data ADFD \
+  --data ADFTD \
   --e_layers 6 \
   --batch_size 128 \
   --d_model 128 \
@@ -290,10 +291,10 @@ python \
   -u run.py \
   --task_name classification \
   --is_training 1 \
-  --root_path ./dataset/ADFD/ \
-  --model_id ADFD-Indep \
+  --root_path ./dataset/ADFTD/ \
+  --model_id ADFTD-Indep \
   --model Medformer \
-  --data ADFD \
+  --data ADFTD \
   --e_layers 6 \
   --batch_size 128 \
   --d_model 128 \
@@ -310,10 +311,10 @@ python \
   -u run.py \
   --task_name classification \
   --is_training 1 \
-  --root_path ./dataset/ADFD/ \
-  --model_id ADFD-Indep \
+  --root_path ./dataset/ADFTD/ \
+  --model_id ADFTD-Indep \
   --model Medformer \
-  --data ADFD \
+  --data ADFTD \
   --e_layers 6 \
   --batch_size 128 \
   --d_model 128 \
@@ -456,3 +457,51 @@ python \
   --train_epochs 100 \
   --patience 10
 
+
+
+# Two human activities dataset
+
+# UCI-HAR Dataset
+python \
+  -u run.py \
+  --task_name classification \
+  --is_training 1 \
+  --root_path ./dataset/UCI-HAR/ \
+  --model_id UCI-HAR \
+  --model Medformer \
+  --data UCI-HAR \
+  --e_layers 6 \
+  --batch_size 32 \
+  --d_model 128 \
+  --d_ff 256 \
+  --patch_len_list 4,4,8,8 \
+  --augmentations flip,shuffle,jitter,drop \
+  --swa \
+  --des 'Exp' \
+  --itr 5 \
+  --learning_rate 0.0001 \
+  --train_epochs 100 \
+  --patience 10
+
+
+# FLAAP Dataset
+python \
+  -u run.py \
+  --task_name classification \
+  --is_training 1 \
+  --root_path ./dataset/FLAAP/ \
+  --model_id FLAAP \
+  --model Medformer \
+  --data FLAAP \
+  --e_layers 6 \
+  --batch_size 32 \
+  --d_model 128 \
+  --d_ff 256 \
+  --patch_len_list 2,4,8 \
+  --augmentations mask,drop \
+  --swa \
+  --des 'Exp' \
+  --itr 5 \
+  --learning_rate 0.0001 \
+  --train_epochs 100 \
+  --patience 10
